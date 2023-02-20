@@ -1,7 +1,7 @@
 local config = {
   options = {
     opt = {
-      keymodel = "startsel,stopsel" -- Enable starting selection mode with shift + arrow.
+      keymodel = "startsel" -- Enable starting selection mode with shift + arrow.
     },
   },
   mappings = {
@@ -18,11 +18,14 @@ local config = {
       -- Global shorcuts
       ["<F2>"] = { "<cmd>:Telescope keymaps <cr>" },
       ["<F3>"] = { "<cmd>:Telescope commands <cr>" },
-      ["<F4>"] = { "<cmd>lua require('telescope.builtin').current_buffer_fuzzy_find()<cr>" },
-      ["<F5>"] = { "<cmd>lua require('telescope.builtin').lsp_document_symbols()<cr>" },
-      ["<F6>"] = { "<cmd>lua require('telescope.builtin').lsp_dynamic_work:space_symbols()<cr>" },
-      ["<F10>"] = { "<cmd>:Telescope lsp_document_symbols<cr>" },
-      ["<F11>"] = { "<cmd>:Telescope lsp_workspace_symbols<cr>" },
+      ["<F4>"] = { "<cmd>:Telescope current_buffer_fuzzy_find<cr>" },
+      ["<F5>"] = { "<cmd>:Telescope lsp_document_symbols<cr>" },
+      ["<F6>"] = { "<cmd>:Telescope lsp_dynamic_workspace_symbols<cr>" },
+      -- ["<F7>"] = {  },
+      -- ["<F8>"] = {  },
+      -- ["<F9>"] = {  },
+      -- ["<F10>"] = {  },
+      -- ["<F11>"] = {  },
       ["<F12>"] = { "gd" },
 
       -- -- -- Undo/Redo
@@ -30,9 +33,7 @@ local config = {
       -- map("v", "<C-z>", "u") -- undo
       -- map("n", "<C-y>", ":redo<cr>") -- Redo
       --
-      -- -- "fine grained" undo.
-      -- -- https://stackoverflow.com/questions/2895551/how-do-i-get-fine-grained-undo-in-vim
-      --
+
       -- -- -- Navigate through buffers
       -- map("n", "<C-s>", ":w<cr>") -- Save buffer
       -- map("i", "<C-s>", "<Esc>:w<cr>") -- Save buffer
@@ -47,6 +48,8 @@ local config = {
       --
     },
     i = {
+      -- "fine grained" undo.
+      --  https://stackoverflow.com/questions/2895551/how-do-i-get-fine-grained-undo-in-vim
       ["<C-z>"] = { "<C-o>u" }, -- Undo
       ["<C-s>"] = { "<esc>:w!<cr>", desc = "Save File" }, -- change description but the same command
       ["<Space>"] = { "<Space><C-g>u" },
