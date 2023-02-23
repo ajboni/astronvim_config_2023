@@ -47,10 +47,16 @@ local config = {
       ["<S-Tab>"] = { ":BufferLineCyclePrev<CR>" }
       --
     },
+    v = {
+      ["<C-c>"] = { "\"+y" }, -- Undo
+
+    },
     i = {
       -- "fine grained" undo.
       --  https://stackoverflow.com/questions/2895551/how-do-i-get-fine-grained-undo-in-vim
       ["<C-z>"] = { "<C-o>u" }, -- Undo
+      ["<C-v>"] = { "<C-r>+" }, -- Undo
+
       ["<C-s>"] = { "<esc>:w!<cr>", desc = "Save File" }, -- change description but the same command
       ["<Space>"] = { "<Space><C-g>u" },
       ["<Return>"] = { "<Return><C-g>u" }
