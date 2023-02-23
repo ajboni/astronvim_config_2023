@@ -1,5 +1,4 @@
 local hop = require("hop")
-local hopDirections = require("hop.hint").HintDirection
 local config = {
 	options = {
 		opt = {
@@ -49,21 +48,16 @@ local config = {
 			["<S-Tab>"] = { ":BufferLineCyclePrev<CR>" },
 			["f"] = {
 				function()
-					hop.hint_char2({ current_line_only = true })
+					hop.hint_words({ current_line_only = true })
 				end,
-				desc = "Hop after curror",
+				desc = "Hop Words Current Line",
 			},
 			["F"] = {
 				function()
-					hop.hint_char1({ direction = hopDirections.BEFORE_CURSOR, current_line_only = true })
+					hop.hint_char2({ current_line_only = false })
 				end,
+				desc = "Hop after curror",
 			},
-			-- vim.keymap.set('', 't', function()
-			--   hop.hint_char1({ direction = hopDirections.AFTER_CURSOR, current_line_only = true, hint_offset = -1 })
-			-- end, { remap = true })
-			-- vim.keymap.set('', 'T', function()
-			--   hop.hint_char1({ direction = hopDirections.BEFORE_CURSOR, current_line_only = true, hint_offset = 1 })
-			-- end, { remap = true })
 		},
 		i = {
 			-- "fine grained" undo.
@@ -79,9 +73,8 @@ local config = {
 			-- ["<esc>"] = false,
 		},
 		v = {
-			["<C-c>"] = { "\"+y" }, -- Undo
-		}
-
+			["<C-c>"] = { '"+y' }, -- Undo
+		},
 	},
 	-- Configure plugins
 	plugins = {
