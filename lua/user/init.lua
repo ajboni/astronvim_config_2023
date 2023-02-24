@@ -1,4 +1,3 @@
-local hop = require("hop")
 local config = {
 	options = {
 		opt = {
@@ -48,13 +47,13 @@ local config = {
 			["<S-Tab>"] = { ":BufferLineCyclePrev<CR>" },
 			["f"] = {
 				function()
-					hop.hint_words({ current_line_only = true })
+					require("hop").hint_words({ current_line_only = true })
 				end,
 				desc = "Hop Words Current Line",
 			},
 			["F"] = {
 				function()
-					hop.hint_char2({ current_line_only = false })
+					require("hop").hint_char2({ current_line_only = false })
 				end,
 				desc = "Hop after curror",
 			},
