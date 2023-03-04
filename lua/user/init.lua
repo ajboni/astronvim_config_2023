@@ -73,6 +73,18 @@ local config = {
 		},
 		v = {
 			["<C-c>"] = { '"+y' }, -- Undo
+			["f"] = {
+				function()
+					require("hop").hint_words({ current_line_only = true })
+				end,
+				desc = "Hop Words Current Line",
+			},
+			["F"] = {
+				function()
+					require("hop").hint_char2({ current_line_only = false })
+				end,
+				desc = "Hop after curror",
+			},
 		},
 	},
 	-- Configure plugins
