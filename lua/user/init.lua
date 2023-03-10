@@ -27,7 +27,6 @@ local config = {
 			-- ["<F10>"] = {  },
 			-- ["<F11>"] = {  },
 			["<F12>"] = { "gd" },
-
 			-- -- -- Undo/Redo
 			["<C-z>"] = { "u" }, --} undo
 			-- map("v", "<C-z>", "u") -- undo
@@ -61,8 +60,8 @@ local config = {
 		i = {
 			-- "fine grained" undo.
 			--  https://stackoverflow.com/questions/2895551/how-do-i-get-fine-grained-undo-in-vim
-			["<C-z>"] = { "<C-o>u" }, -- Undo
-			["<C-v>"] = { "<C-r>+" }, -- Undo
+			["<C-z>"] = { "<C-o>u" },                        -- Undo
+			["<C-v>"] = { "<C-r>+" },                        -- Undo
 			["<C-s>"] = { "<esc>:w!<cr>", desc = "Save File" }, -- change description but the same command
 			["<Space>"] = { "<Space><C-g>u" },
 			["<Return>"] = { "<Return><C-g>u" },
@@ -90,6 +89,12 @@ local config = {
 	-- Configure plugins
 	plugins = {
 		init = {
+			{
+				"ggandor/leap.nvim",
+				config = function()
+					require("leap").add_default_mappings()
+				end,
+			},
 			{
 				"phaazon/hop.nvim",
 				branch = "v2", -- optional but strongly recommended
