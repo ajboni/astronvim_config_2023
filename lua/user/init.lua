@@ -7,14 +7,12 @@ local config = {
 	mappings = {
 		-- first key is the mode
 		n = {
-			-- second key is the lefthand side of the map
-			-- mappings seen under group name "Buffer"
-			-- ["<leader>bb"] = { "<cmd>tabnew<cr>", desc = "New tab" },
-			-- ["<leader>bc"] = { "<cmd>BufferLinePickClose<cr>", desc = "Pick to close" },
-			-- ["<leader>bj"] = { "<cmd>BufferLinePick<cr>", desc = "Pick to jump" },
-			-- ["<leader>bt "] = { "<cmd>BufferLineSortByTabs<cr>", desc = "Sort by tabs" },
-			-- ["<C-s>"] = { ":w!<cr>", desc = "Save File" }, -- change description but the same command
-
+			-- Buffers
+			["<Tab>"] = { function() require("astronvim.utils.buffer").nav(vim.v.count > 0 and vim.v.count or 1) end, desc =
+			"Next buffer" },
+			["<S-Tab>"] = { function() require("astronvim.utils.buffer").nav(-(vim.v.count > 0 and vim.v.count or 1)) end, desc =
+			"Previous buffer" },
+			["<C-w>"] = { "<cmd>:bdelete<cr>" }, -- Close buffer
 			-- Global shorcuts
 			["<F2>"] = { "<cmd>:Telescope keymaps <cr>" },
 			["<F3>"] = { "<cmd>:Telescope commands <cr>" },
@@ -29,21 +27,9 @@ local config = {
 			["<F12>"] = { "gd" },
 			-- -- -- Undo/Redo
 			["<C-z>"] = { "u" }, --} undo
-			-- map("v", "<C-z>", "u") -- undo
-			-- map("n", "<C-y>", ":redo<cr>") -- Redo
-			--
-
-			-- -- -- Navigate through buffers
-			-- map("n", "<C-s>", ":w<cr>") -- Save buffer
-			-- map("i", "<C-s>", "<Esc>:w<cr>") -- Save buffer
-			-- map("n", "<C-e>", "<C-w>") -- Close buffer
-			["<C-w>"] = { "<cmd>:bdelete<cr>" }, -- Close buffer
-			--
 			-- Telescope
 			["<C-p>"] = { "<cmd>:Telescope find_files hidden=false<cr>" },
 			["<C-[>"] = { "<cmd>:Telescope oldfiles cwd_only=true <CR>" },
-			["<Tab>"] = { ":BufferLineCycleNext<CR>" },
-			["<S-Tab>"] = { ":BufferLineCyclePrev<CR>" },
 			["f"] = {
 				function()
 					require("hop").hint_words({ current_line_only = true })
@@ -88,21 +74,13 @@ local config = {
 	},
 	-- Configure plugins
 	plugins = {
-		init = {
-			{
-				"ggandor/leap.nvim",
-				config = function()
-					require("leap").add_default_mappings()
-				end,
-			},
-			{
-				"phaazon/hop.nvim",
-				branch = "v2", -- optional but strongly recommended
-				config = function()
-					-- you can configure Hop the way you like here; see :h hop-config
-					require("hop").setup({ keys = "etovxqpdygfblzhckisuran" })
-				end,
-			},
+		{
+			"phaazon/hop.nvim",
+			branch = "v2", -- optional but strongly recommended
+			config = function()
+				-- you can configure Hop the way you like here; see :h hop-config
+				require("hop").setup({ keys = "etovxqpdygfblzhckisuran" })
+			end,
 		},
 	},
 }
