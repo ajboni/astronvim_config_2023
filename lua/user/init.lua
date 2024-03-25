@@ -8,10 +8,18 @@ local config = {
 		-- first key is the mode
 		n = {
 			-- Buffers
-			["<Tab>"] = { function() require("astronvim.utils.buffer").nav(vim.v.count > 0 and vim.v.count or 1) end, desc =
-			"Next buffer" },
-			["<S-Tab>"] = { function() require("astronvim.utils.buffer").nav(-(vim.v.count > 0 and vim.v.count or 1)) end, desc =
-			"Previous buffer" },
+			["<Tab>"] = {
+				function()
+					require("astronvim.utils.buffer").nav(vim.v.count > 0 and vim.v.count or 1)
+				end,
+				desc = "Next buffer",
+			},
+			["<S-Tab>"] = {
+				function()
+					require("astronvim.utils.buffer").nav(-(vim.v.count > 0 and vim.v.count or 1))
+				end,
+				desc = "Previous buffer",
+			},
 			["<C-w>"] = { "<cmd>:bdelete<cr>" }, -- Close buffer
 			-- Global shorcuts
 			["<F2>"] = { "<cmd>:Telescope keymaps <cr>" },
@@ -52,8 +60,8 @@ local config = {
 		i = {
 			-- "fine grained" undo.
 			--  https://stackoverflow.com/questions/2895550/how-do-i-get-fine-grained-undo-in-vim
-			["<c-z>"] = { "<C-o>u" },                        -- Undo
-			["<c-v>"] = { "<C-r>+" },                        -- Undo
+			["<c-z>"] = { "<C-o>u" }, -- Undo
+			["<c-v>"] = { "<C-r>+" }, -- Undo
 			["<c-s>"] = { "<esc>:w!<cr>", desc = "Save File" }, -- change description but the same command
 			["<Space>"] = { "<Space><C-g>u" },
 			["<Return>"] = { "<Return><C-g>u" },
@@ -93,6 +101,13 @@ local config = {
 			config = function()
 				-- you can configure Hop the way you like here; see :h hop-config
 				require("hop").setup({ keys = "etovxqpdygfblzhckisuran" })
+			end,
+		},
+		{
+			"ray-x/lsp_signature.nvim",
+			event = "BufRead",
+			config = function()
+				require("lsp_signature").setup()
 			end,
 		},
 	},
